@@ -1,5 +1,7 @@
 # Citrix
 
+[![Build Status](https://travis-ci.org/fnando/citrix.svg)](https://travis-ci.org/fnando/citrix)
+
 ## Installation
 
 Add this line to your application's Gemfile:
