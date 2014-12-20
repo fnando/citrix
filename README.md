@@ -1,6 +1,8 @@
 # Citrix
 
 [![Build Status](https://travis-ci.org/fnando/citrix.svg)](https://travis-ci.org/fnando/citrix)
+[![Code Climate](https://codeclimate.com/github/fnando/citrix/badges/gpa.svg)](https://codeclimate.com/github/fnando/citrix)
+[![Test Coverage](https://codeclimate.com/github/fnando/citrix/badges/coverage.svg)](https://codeclimate.com/github/fnando/citrix)
 
 ## Installation
 
