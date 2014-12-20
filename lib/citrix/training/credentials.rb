@@ -13,6 +13,15 @@ module Citrix
 
       # Set the account key.
       attr_accessor :account_key
+
+      # Initialize a `Citrix::Training::Credentials` instance.
+      def self.build(credentials)
+        if credentials.kind_of?(self)
+          credentials
+        else
+          new(credentials)
+        end
+      end
     end
   end
 end
