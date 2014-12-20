@@ -6,3 +6,7 @@ rvm:
 
 gemfile:
   - Gemfile
+
+addons:
+  code_climate:
+    repo_token: 36d1b2992ebb12fef1167de97f900d332f01e75f0b2bc90b3159621585a9ed1e
