@@ -12,4 +12,11 @@ describe Citrix::Training::Client do
       expect(client.credentials).to be_a(Citrix::Training::Credentials)
     end
   end
+
+  describe '#trainings' do
+    it 'returns namespace' do
+      client = Citrix::Training::Client.build({})
+      expect(client.trainings).to be_a(Citrix::Training::Namespace::Trainings)
+    end
+  end
 end

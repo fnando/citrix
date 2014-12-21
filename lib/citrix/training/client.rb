@@ -19,6 +19,13 @@ module Citrix
       def self.build(credentials)
         new(credentials: Credentials.build(credentials))
       end
+
+      # Return the training namespace, which include methods for creating and
+      # finding trainings. For additional info, check
+      # `Citrix::Training::Namespace::Trainings`.
+      def trainings
+        Namespace::Trainings.new(credentials: credentials)
+      end
     end
   end
 end
