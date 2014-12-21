@@ -67,6 +67,14 @@ RSpec.configure do |config|
       )
     end
 
+    def build_registrant_attributes(attributes = {})
+      {
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'john@example.com'
+      }.merge(attributes)
+    end
+
     def url_for(*args)
       File.join(Citrix::Training::API_ENDPOINT, *args)
     end

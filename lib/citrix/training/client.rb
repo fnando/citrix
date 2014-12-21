@@ -26,6 +26,13 @@ module Citrix
       def trainings
         Namespace::Trainings.new(credentials: credentials)
       end
+
+      # Return the registrants namespace, which include methods for creating
+      # registrants. It requires an existing training.
+      # For additional info, check `Citrix::Training::Namespace::Registrants`.
+      def registrants(training)
+        Namespace::Registrants.new(credentials: credentials, training: training)
+      end
     end
   end
 end
