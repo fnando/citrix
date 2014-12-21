@@ -21,7 +21,7 @@ module Citrix
         # emails could be getting blocked by their email server due to spam
         # filtering or a grey-listing setting.
         #
-        #   response, registrant = client.registrants.create(training, {
+        #   response, registrant = client.registrants(training).create({
         #     first_name: 'John',
         #     last_name: 'Doe',
         #     email: 'john@example.com'
