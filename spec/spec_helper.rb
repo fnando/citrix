@@ -4,7 +4,9 @@ CodeClimate::TestReporter.start
 require 'bundler/setup'
 require 'citrix'
 require 'webmock/rspec'
+
 require 'ostruct'
+require 'pathname'
 
 WebMock.disable_net_connect!(allow: %w{codeclimate.com})
 
@@ -25,6 +27,10 @@ RSpec.configure do |config|
   config.include Module.new {
     def serialize(attributes, serializer = described_class)
       serializer.new(attributes: attributes).serialize
+    end
+
+    def deserialize(attributes, serializer = described_class)
+      serializer.new(attributes: attributes).deserialize
     end
 
     def build_credentials(credentials = {})
@@ -52,7 +58,7 @@ RSpec.configure do |config|
     end
 
     def build_date(starts_at = Time.now, ends_at = starts_at + 3600)
-      Citrix::Training::TrainingDate.new(starts_at, ends_at)
+      Citrix::Training::Resource::TrainingDate.new(starts_at, ends_at)
     end
 
     def url_for(*args)
@@ -61,6 +67,10 @@ RSpec.configure do |config|
 
     def last_request
       WebMock.requests.last
+    end
+
+    def fixtures
+      Pathname.new(File.expand_path('../fixtures', __FILE__))
     end
   }
 end

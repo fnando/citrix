@@ -35,4 +35,27 @@ describe Citrix::Training::Namespace::Trainings do
       expect(training.key).to eq('1234')
     end
   end
+
+  describe '#all' do
+    let(:client) { build_client }
+
+    it 'performs request' do
+      stub_request(:get, /.+/).to_return(body: '[]', headers: {'Content-Type' => 'application/json'})
+
+      url = url_for('organizers', client.credentials.organizer_key, 'trainings')
+      client.trainings.all
+
+      expect(last_request.method).to eq(:get)
+      expect(last_request.uri.normalize.to_s).to eq(url)
+    end
+
+    it 'returns trainings' do
+      stub_request(:get, /.+/)
+        .to_return(status: 200, body: fixtures.join('trainings.json').read, headers: {'Content-Type' => 'application/json'})
+
+      response, trainings = client.trainings.all
+
+      expect(trainings.size).to eq(1)
+    end
+  end
 end

@@ -44,6 +44,12 @@ module Citrix
           Serializer::Training.new(attributes: attributes).serialize
         end
 
+        # Convert `attributes` into parameters that
+        # Citrix::Training::Resource::Training can understand.
+        def self.deserialize(attributes)
+          Serializer::Training.new(attributes: attributes).deserialize
+        end
+
         # Return a hash containing all attributes.
         def attributes
           ATTRIBUTES.each_with_object({}) do |name, buffer|

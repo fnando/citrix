@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Intro to HTML, CSS and JavaScript",
+    "description": "Create basic webpages and sites using HTML 5, CSS3 and basic JavaScript.",
+    "timeZone": "",
+    "times": [
+      {
+        "startDate": "2014-03-26T15:00:00Z",
+        "endDate": "2014-03-26T23:00:00Z"
+      }
+    ],
+    "organizers": [
+      {
+        "givenName": "Charley",
+        "surname": "Waters",
+        "email": "c.waters@test.com",
+        "organizerKey": "8439885694023994630"
+      }
+    ],
+    "registrationSettings": {
+      "disableConfirmationEmail": false,
+      "disableWebRegistration": false
+    },
+    "trainingKey": "8178251407424893697"
+  }
+]

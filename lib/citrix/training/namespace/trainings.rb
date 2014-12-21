@@ -34,6 +34,8 @@ module Citrix
         # - `web_registration`: Disable/Enable web registration. Optional.
         # - `confirmation_email`: Disable/Enable confirmation e-mails. Optional.
         #
+        # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/create-training-0
+        #
         def create(attributes)
           training = Resource::Training.new(attributes)
 
@@ -43,6 +45,28 @@ module Citrix
           training.key = json_parser.load(response.body) if response.ok?
 
           [response, training]
+        end
+
+        # Retrieve information on all scheduled trainings for a given organizer.
+        #
+        # The trainings are returned in the order in which they were created.
+        # Completed trainings are not included; ongoing trainings with past
+        # sessions are included along with the past sessions. If the organizer
+        # does not have any scheduled trainings, the response will be empty.
+        #
+        # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/get-trainings
+        #
+        def all
+          url = File.join(API_ENDPOINT, 'organizers', credentials.organizer_key, 'trainings')
+          response = http_client.get(url)
+
+          if response.ok?
+            trainings = response.json.map do |attrs|
+              Resource::Training.deserialize(attrs)
+            end
+          end
+
+          [response, trainings]
         end
       end
     end
