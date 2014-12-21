@@ -37,4 +37,34 @@ describe Citrix::Training::Namespace::Registrants do
       expect(registrant.key).to eq(attrs['registrantKey'])
     end
   end
+
+  describe '#all' do
+    let(:client) { build_client }
+    let(:training) { build_training }
+
+    it 'performs request' do
+      stub_request(:get, /.+/).to_return(
+        body: '[]',
+        headers: {'Content-Type' => 'application/json'}
+      )
+
+      url = url_for('organizers', client.credentials.organizer_key, 'trainings', training.key, 'registrants')
+      client.registrants(training).all
+
+      expect(last_request.method).to eq(:get)
+      expect(last_request.uri.normalize.to_s).to eq(url)
+    end
+
+    it 'returns registrants' do
+      stub_request(:get, /.+/).to_return(
+        status: 200,
+        body: fixtures.join('registrants.json').read,
+        headers: {'Content-Type' => 'application/json'}
+      )
+
+      response, registrants = client.registrants(training).all
+
+      expect(registrants.size).to eq(3)
+    end
+  end
 end

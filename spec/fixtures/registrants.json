@@ -1,0 +1,31 @@
+[
+  {
+    "email": " c.waters@test.com ",
+    "givenName": "Charley",
+    "surname": "Waters",
+    "status": "APPROVED",
+    "registrationDate": "2014-03-07T22:48:19Z",
+    "joinUrl": "https://global.gototraining.com/join/training/3480581380460709633/107445004",
+    "confirmationUrl": "https://attendee.gototraining.com/registration/confirmation.tmpl?registrant=5646167387902096129&training=3480581380460709633",
+    "registrantKey": "5646167387902096129"
+  },
+  {
+    "email": "john.smith@test.com",
+    "givenName": "John",
+    "surname": "Smith",
+    "status": "UNREGISTERED",
+    "registrationDate": "2014-03-08T13:21:52Z",
+    "joinUrl": "https://global.gototraining.com/join/training/3480581380460709633/107019724",
+    "confirmationUrl": "https://attendee.gototraining.com/registration/confirmation.tmpl?registrant=2121396992126760705&training=3480581380460709633",
+    "registrantKey": "2121396992126760705"
+  },
+  {
+    "email": "jane.jones@test.com",
+    "givenName": "Jane",
+    "surname": "Jones",
+    "registrationDate": "2014-03-07T18:13:31Z",
+    "joinUrl": "https://global.gototraining.com/join/training/3480581380460709633/107245649",
+    "confirmationUrl": "https://attendee.gototraining.com/registration/confirmation.tmpl?registrant=5012777222131839489&training=3480581380460709633",
+    "registrantKey": "5012777222131839489"
+  }
+]
