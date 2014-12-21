@@ -10,7 +10,9 @@ API wrappers for Citrix services like GoToTraining. It includes partial API mapp
 
 Add this line to your application's Gemfile:
 
-    gem 'citrix'
+```ruby
+gem 'citrix'
+```
 
 And then execute:
 
