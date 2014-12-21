@@ -62,7 +62,7 @@ module Citrix
 
           if response.ok?
             trainings = response.json.map do |attrs|
-              Resource::Training.deserialize(attrs)
+              Resource::Training.new Resource::Training.deserialize(attrs)
             end
           end
 

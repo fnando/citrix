@@ -56,6 +56,7 @@ describe Citrix::Training::Namespace::Trainings do
       response, trainings = client.trainings.all
 
       expect(trainings.size).to eq(1)
+      expect(trainings.first).to be_a(Citrix::Training::Resource::Training)
     end
   end
 

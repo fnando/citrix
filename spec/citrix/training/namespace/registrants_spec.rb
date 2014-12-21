@@ -65,6 +65,7 @@ describe Citrix::Training::Namespace::Registrants do
       response, registrants = client.registrants(training).all
 
       expect(registrants.size).to eq(3)
+      expect(registrants.first).to be_a(Citrix::Training::Resource::Registrant)
     end
   end
 

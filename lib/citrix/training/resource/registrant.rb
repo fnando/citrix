@@ -22,6 +22,9 @@ module Citrix
         # Set the registrant key.
         attr_accessor :key
 
+        # Set the status.
+        attr_accessor :status
+
         ATTRIBUTES = %i[
           first_name
           last_name

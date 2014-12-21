@@ -80,7 +80,7 @@ module Citrix
 
           if response.ok?
             registrants = response.json.map do |attrs|
-              Resource::Registrant.deserialize(attrs)
+              Resource::Registrant.new Resource::Registrant.deserialize(attrs)
             end
           end
 

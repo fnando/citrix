@@ -22,7 +22,8 @@ module Citrix
             email: attributes['email'],
             join_url: attributes['joinUrl'],
             confirmation_url: attributes['confirmationUrl'],
-            key: attributes['registrantKey']
+            key: attributes['registrantKey'],
+            status: attributes['status'] ? attributes['status'].downcase : nil
           }
         end
       end
