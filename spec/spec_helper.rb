@@ -75,6 +75,12 @@ RSpec.configure do |config|
       }.merge(attributes)
     end
 
+    def build_registrant(attributes = {})
+      Citrix::Training::Resource::Registrant.new(
+        build_registrant_attributes.merge(key: '1234').merge(attributes)
+      )
+    end
+
     def url_for(*args)
       File.join(Citrix::Training::API_ENDPOINT, *args)
     end

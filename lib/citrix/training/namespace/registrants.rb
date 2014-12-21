@@ -86,6 +86,21 @@ module Citrix
 
           [response, registrants]
         end
+
+        # This call cancels a registration in a scheduled training for a
+        # specific registrant.
+        #
+        # If the registrant has paid for the training, a cancellation cannot be
+        # completed with this method; it must be completed on the Citrix
+        # external admin site. No notification is sent to the registrant or
+        # the organizer by default. The registrant can re-register if needed.
+        #
+        # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/cancel-registration-0
+        #
+        def remove(registrant)
+          url = url_for('organizers', credentials.organizer_key, 'trainings', training.key, 'registrants', registrant.key)
+          http_client.delete(url)
+        end
       end
     end
   end
