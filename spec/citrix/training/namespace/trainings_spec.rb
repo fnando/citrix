@@ -58,4 +58,27 @@ describe Citrix::Training::Namespace::Trainings do
       expect(trainings.size).to eq(1)
     end
   end
+
+  describe '#remove' do
+    let(:client) { build_client }
+
+    it 'performs request' do
+      stub_request(:delete, /.+/)
+
+      training = build_training
+      url = url_for('organizers', client.credentials.organizer_key, 'trainings', training.key)
+      client.trainings.remove(training)
+
+      expect(last_request.method).to eq(:delete)
+      expect(last_request.uri.normalize.to_s).to eq(url)
+    end
+
+    it 'returns response' do
+      stub_request(:delete, /.+/)
+      training = build_training
+      response = client.trainings.remove(training)
+
+      expect(response).to be_a(Aitch::Response)
+    end
+  end
 end

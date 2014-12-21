@@ -6,6 +6,10 @@ module Citrix
           http_client.configuration.json_parser
         end
 
+        def url_for(*args)
+          File.join(API_ENDPOINT, *args.map(&:to_s))
+        end
+
         def http_client
           @http_client ||= Aitch::Namespace.new.tap do |ns|
             ns.configure do |config|

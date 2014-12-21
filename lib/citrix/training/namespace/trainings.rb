@@ -39,7 +39,7 @@ module Citrix
         def create(attributes)
           training = Resource::Training.new(attributes)
 
-          url = File.join(API_ENDPOINT, 'organizers', credentials.organizer_key, 'trainings')
+          url = url_for('organizers', credentials.organizer_key, 'trainings')
           response = http_client.post(url, training.serialize)
 
           training.key = json_parser.load(response.body) if response.ok?
@@ -57,7 +57,7 @@ module Citrix
         # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/get-trainings
         #
         def all
-          url = File.join(API_ENDPOINT, 'organizers', credentials.organizer_key, 'trainings')
+          url = url_for('organizers', credentials.organizer_key, 'trainings')
           response = http_client.get(url)
 
           if response.ok?
@@ -67,6 +67,23 @@ module Citrix
           end
 
           [response, trainings]
+        end
+
+        # Deletes a scheduled or completed training.
+        #
+        # For scheduled trainings, it deletes all scheduled sessions of the
+        # training. For completed trainings, the sessions remain in the
+        # database. No email is sent to organizers or registrants, but when
+        # participants attempt to start or join the training, they are directed
+        # to a page that states: `Training Not Found: The training you are
+        # trying to join is no longer available.`
+        #
+        #   response = client.trainings.remove(training)
+        #   response.ok? #=> successfully removed
+        #
+        def remove(training)
+          url = url_for('organizers', credentials.organizer_key, 'trainings', training.key)
+          http_client.delete(url)
         end
       end
     end

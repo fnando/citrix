@@ -9,6 +9,13 @@ describe Citrix::Training::Helpers::HttpClient do
     end
   end
 
+  describe '#url_for' do
+    it 'returns url' do
+      url = helper.url_for('trainings', 1234)
+      expect(url).to eq(File.join(Citrix::Training::API_ENDPOINT, 'trainings', '1234'))
+    end
+  end
+
   describe '#http_client' do
     let(:config) { helper.http_client.configuration }
 

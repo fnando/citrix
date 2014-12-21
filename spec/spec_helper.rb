@@ -61,6 +61,12 @@ RSpec.configure do |config|
       Citrix::Training::Resource::TrainingDate.new(starts_at, ends_at)
     end
 
+    def build_training(attributes = {})
+      Citrix::Training::Resource::Training.new(
+        build_training_attributes.merge(key: '1234').merge(attributes)
+      )
+    end
+
     def url_for(*args)
       File.join(Citrix::Training::API_ENDPOINT, *args)
     end
