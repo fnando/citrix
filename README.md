@@ -74,6 +74,20 @@ else
 end
 ```
 
+#### Get training
+
+Retrieve information on a given scheduled training for a given organizer.
+
+```ruby
+response, training = client.trainings.find(training_key)
+
+if training
+  # Do something with training
+else
+  p response.json
+end
+```
+
 #### Remove a training
 
 Deletes a scheduled or completed training.

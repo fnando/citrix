@@ -60,6 +60,30 @@ describe Citrix::Training::Namespace::Trainings do
     end
   end
 
+  describe '#find' do
+    let(:client) { build_client }
+
+    it 'performs request' do
+      stub_request(:get, /.+/)
+        .to_return(status: 200, body: fixtures.join('training.json').read, headers: {'Content-Type' => 'application/json'})
+      client.trainings.find('1234')
+
+      url = url_for('organizers', client.credentials.organizer_key, 'trainings', '1234')
+
+      expect(last_request.method).to eq(:get)
+      expect(last_request.uri.normalize.to_s).to eq(url)
+    end
+
+    it 'returns training' do
+      stub_request(:get, /.+/)
+        .to_return(status: 200, body: fixtures.join('training.json').read, headers: {'Content-Type' => 'application/json'})
+
+      response, training = client.trainings.find('1234')
+
+      expect(training).to be_a(Citrix::Training::Resource::Training)
+    end
+  end
+
   describe '#remove' do
     let(:client) { build_client }
 

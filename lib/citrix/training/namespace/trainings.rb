@@ -69,6 +69,18 @@ module Citrix
           [response, trainings]
         end
 
+        # Find a scheduled or completed training by its key.
+        def find(key)
+          url = url_for('organizers', credentials.organizer_key, 'trainings', key)
+          response = http_client.get(url)
+
+          if response.ok?
+            training = Resource::Training.new Resource::Training.deserialize(response.json)
+          end
+
+          [response, training]
+        end
+
         # Deletes a scheduled or completed training.
         #
         # For scheduled trainings, it deletes all scheduled sessions of the
