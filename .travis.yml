@@ -9,4 +9,5 @@ gemfile:
 
 addons:
   code_climate:
-    repo_token: 36d1b2992ebb12fef1167de97f900d332f01e75f0b2bc90b3159621585a9ed1e
+    repo_token:
+      secure: "MJuQnvBt4+7QucNh3YWIur3AcDMsIEaIaEkT+tWbE/153lLdyNWP78hBZFN5Ktbq156O05cop6jeXxL8skHJsBaCedx1Qp/agDwO4CX4Ia7pQh9WN4ouYGFkFvrEc4h0hDbo8fgO0lZcZg6PCTMItBXJxqF3URH+zzfvGDOOi9w="
