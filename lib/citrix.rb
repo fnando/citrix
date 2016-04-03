@@ -1,2 +1,2 @@
-require 'citrix/version'
-require 'citrix/training'
+require "citrix/version"
+require "citrix/training"

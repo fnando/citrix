@@ -22,9 +22,9 @@ module Citrix
         # filtering or a grey-listing setting.
         #
         #   response, registrant = client.registrants(training).create({
-        #     first_name: 'John',
-        #     last_name: 'Doe',
-        #     email: 'john@example.com'
+        #     first_name: "John",
+        #     last_name: "Doe",
+        #     email: "john@example.com"
         #   })
         #
         #   if response.ok?
@@ -42,7 +42,7 @@ module Citrix
         def create(attributes)
           registrant = Resource::Registrant.new(attributes)
 
-          url = url_for('organizers', credentials.organizer_key, 'trainings', training.key, 'registrants')
+          url = url_for("organizers", credentials.organizer_key, "trainings", training.key, "registrants")
           response = http_client.post(url, registrant.serialize)
 
           if response.ok?
@@ -75,7 +75,7 @@ module Citrix
         # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/get-training-registrants-0
         #
         def all
-          url = url_for('organizers', credentials.organizer_key, 'trainings', training.key, 'registrants')
+          url = url_for("organizers", credentials.organizer_key, "trainings", training.key, "registrants")
           response = http_client.get(url)
 
           if response.ok?
@@ -98,7 +98,7 @@ module Citrix
         # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/cancel-registration-0
         #
         def remove(registrant)
-          url = url_for('organizers', credentials.organizer_key, 'trainings', training.key, 'registrants', registrant.key)
+          url = url_for("organizers", credentials.organizer_key, "trainings", training.key, "registrants", registrant.key)
           http_client.delete(url)
         end
       end

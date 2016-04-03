@@ -23,13 +23,13 @@ module Citrix
 
         def deserialize
           {
-            key: attributes['trainingKey'],
-            name: attributes['name'],
-            description: attributes['description'],
-            timezone: attributes['timeZone'],
-            dates: deserialize_dates(attributes['times'] || []),
-            web_registration: !attributes['registrationSettings']['disableWebRegistration'],
-            confirmation_email: !attributes['registrationSettings']['disableConfirmationEmail']
+            key: attributes["trainingKey"],
+            name: attributes["name"],
+            description: attributes["description"],
+            timezone: attributes["timeZone"],
+            dates: deserialize_dates(attributes["times"] || []),
+            web_registration: !attributes["registrationSettings"]["disableWebRegistration"],
+            confirmation_email: !attributes["registrationSettings"]["disableConfirmationEmail"]
           }
         end
 
@@ -38,8 +38,8 @@ module Citrix
         def deserialize_dates(dates)
           dates.map do |date|
             Resource::TrainingDate.new(
-              Time.parse(date['startDate']),
-              Time.parse(date['endDate'])
+              Time.parse(date["startDate"]),
+              Time.parse(date["endDate"])
             )
           end
         end

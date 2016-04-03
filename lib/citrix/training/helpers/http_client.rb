@@ -14,15 +14,15 @@ module Citrix
           @http_client ||= Aitch::Namespace.new.tap do |ns|
             ns.configure do |config|
               if $DEBUG
-                require 'logger'
+                require "logger"
                 config.logger = Logger.new($stdout)
               end
 
               config.user_agent = "Citrix::Rubygems/#{Citrix::VERSION}"
               config.default_headers = {
-                'Authorization' => -> { "OAuth oauth_token=#{credentials.oauth_token}" },
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json'
+                "Authorization" => -> { "OAuth oauth_token=#{credentials.oauth_token}" },
+                "Accept" => "application/json",
+                "Content-Type" => "application/json"
               }
             end
           end

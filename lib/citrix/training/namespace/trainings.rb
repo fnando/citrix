@@ -11,9 +11,9 @@ module Citrix
         # Create a new training.
         #
         #   response, training = client.trainings.create({
-        #     name: 'Ruby on Rails',
-        #     description: 'Getting started with Ruby on Rails',
-        #     timezone: 'America/Sao_Paulo',
+        #     name: "Ruby on Rails",
+        #     description: "Getting started with Ruby on Rails",
+        #     timezone: "America/Sao_Paulo",
         #     dates: [date],
         #     web_registration: false,
         #     confirmation_email: false,
@@ -39,7 +39,7 @@ module Citrix
         def create(attributes)
           training = Resource::Training.new(attributes)
 
-          url = url_for('organizers', credentials.organizer_key, 'trainings')
+          url = url_for("organizers", credentials.organizer_key, "trainings")
           response = http_client.post(url, training.serialize)
 
           training.key = json_parser.load(response.body) if response.ok?
@@ -57,7 +57,7 @@ module Citrix
         # Endpoint: https://developer.citrixonline.com/api/gototraining-rest-api/apimethod/get-trainings
         #
         def all
-          url = url_for('organizers', credentials.organizer_key, 'trainings')
+          url = url_for("organizers", credentials.organizer_key, "trainings")
           response = http_client.get(url)
 
           if response.ok?
@@ -71,7 +71,7 @@ module Citrix
 
         # Find a scheduled or completed training by its key.
         def find(key)
-          url = url_for('organizers', credentials.organizer_key, 'trainings', key)
+          url = url_for("organizers", credentials.organizer_key, "trainings", key)
           response = http_client.get(url)
 
           if response.ok?
@@ -94,7 +94,7 @@ module Citrix
         #   response.ok? #=> successfully removed
         #
         def remove(training)
-          url = url_for('organizers', credentials.organizer_key, 'trainings', training.key)
+          url = url_for("organizers", credentials.organizer_key, "trainings", training.key)
           http_client.delete(url)
         end
       end
