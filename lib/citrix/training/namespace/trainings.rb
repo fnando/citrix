@@ -61,7 +61,7 @@ module Citrix
           response = http_client.get(url)
 
           if response.ok?
-            trainings = response.json.map do |attrs|
+            trainings = response.data.map do |attrs|
               Resource::Training.new Resource::Training.deserialize(attrs)
             end
           end
@@ -75,7 +75,7 @@ module Citrix
           response = http_client.get(url)
 
           if response.ok?
-            training = Resource::Training.new Resource::Training.deserialize(response.json)
+            training = Resource::Training.new Resource::Training.deserialize(response.data)
           end
 
           [response, training]

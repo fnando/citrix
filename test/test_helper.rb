@@ -1,43 +1,30 @@
-require 'codeclimate-test-reporter'
+require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
-require 'bundler/setup'
-require 'citrix'
-require 'webmock/rspec'
+require "bundler/setup"
+require "citrix"
 
-require 'ostruct'
-require 'pathname'
+require "ostruct"
+require "pathname"
 
-WebMock.disable_net_connect!(allow: %w{codeclimate.com})
+require "minitest/utils"
+require "minitest/autorun"
 
-def WebMock.requests
-  @requests ||= []
-end
-
-WebMock.after_request do |request, response|
-  WebMock.requests << request
-end
-
-RSpec.configure do |config|
-  config.before do
-    WebMock.requests.clear
-    $DEBUG = false
-  end
-
-  config.include Module.new {
-    def serialize(attributes, serializer = described_class)
+module Minitest
+  class Test
+    def serialize(attributes)
       serializer.new(attributes: attributes).serialize
     end
 
-    def deserialize(attributes, serializer = described_class)
+    def deserialize(attributes)
       serializer.new(attributes: attributes).deserialize
     end
 
     def build_credentials(credentials = {})
       Citrix::Training::Credentials.build({
-        oauth_token: credentials.fetch(:oauth_token, 'OAUTH_TOKEN'),
-        organizer_key: credentials.fetch(:organizer_key, 'ORGANIZER_KEY'),
-        account_key: credentials.fetch(:account_key, 'ACCOUNT_KEY')
+        oauth_token: credentials.fetch(:oauth_token, "OAUTH_TOKEN"),
+        organizer_key: credentials.fetch(:organizer_key, "ORGANIZER_KEY"),
+        account_key: credentials.fetch(:account_key, "ACCOUNT_KEY")
       })
     end
 
@@ -47,9 +34,9 @@ RSpec.configure do |config|
 
     def build_training_attributes(attributes = {})
       {
-        name: 'NAME',
-        description: 'DESCRIPTION',
-        timezone: 'TIMEZONE',
+        name: "NAME",
+        description: "DESCRIPTION",
+        timezone: "TIMEZONE",
         web_registration: false,
         confirmation_email: false,
         organizers: [],
@@ -63,21 +50,21 @@ RSpec.configure do |config|
 
     def build_training(attributes = {})
       Citrix::Training::Resource::Training.new(
-        build_training_attributes.merge(key: '1234').merge(attributes)
+        build_training_attributes.merge(key: "1234").merge(attributes)
       )
     end
 
     def build_registrant_attributes(attributes = {})
       {
-        first_name: 'John',
-        last_name: 'Doe',
-        email: 'john@example.com'
+        first_name: "John",
+        last_name: "Doe",
+        email: "john@example.com"
       }.merge(attributes)
     end
 
     def build_registrant(attributes = {})
       Citrix::Training::Resource::Registrant.new(
-        build_registrant_attributes.merge(key: '1234').merge(attributes)
+        build_registrant_attributes.merge(key: "1234").merge(attributes)
       )
     end
 
@@ -90,7 +77,7 @@ RSpec.configure do |config|
     end
 
     def fixtures
-      Pathname.new(File.expand_path('../fixtures', __FILE__))
+      Pathname.new(File.expand_path("../fixtures", __FILE__))
     end
-  }
+  end
 end

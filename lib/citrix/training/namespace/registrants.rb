@@ -46,7 +46,7 @@ module Citrix
           response = http_client.post(url, registrant.serialize)
 
           if response.ok?
-            additional_attributes = Serializer::Registrant.new(attributes: response.json).deserialize
+            additional_attributes = Serializer::Registrant.new(attributes: response.data).deserialize
             additional_attributes.each do |key, value|
               registrant.public_send("#{key}=", value) if value
             end
@@ -79,7 +79,7 @@ module Citrix
           response = http_client.get(url)
 
           if response.ok?
-            registrants = response.json.map do |attrs|
+            registrants = response.data.map do |attrs|
               Resource::Registrant.new Resource::Registrant.deserialize(attrs)
             end
           end

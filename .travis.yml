@@ -1,11 +1,18 @@
 language: ruby
-script: bundle exec rspec
-
+script: bundle exec rake
+sudo: false
+cache: bundler
 rvm:
-  - 2.1.5
+  - '2.3.0'
+  - '2.2'
+  - '2.1'
+  - '2.0'
 
 gemfile:
   - Gemfile
+
+notifications:
+  email: false
 
 addons:
   code_climate:

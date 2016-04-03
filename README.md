@@ -56,7 +56,7 @@ response, training = client.trainings.create({
 if response.ok?
   # Training successfully created!
 else
-  p response.json
+  p response.data
 end
 ```
 
@@ -70,7 +70,7 @@ response, trainings = client.trainings.all
 if trainings
   # Retrieved all trainings
 else
-  p response.json
+  p response.data
 end
 ```
 
@@ -84,7 +84,7 @@ response, training = client.trainings.find(training_key)
 if training
   # Do something with training
 else
-  p response.json
+  p response.data
 end
 ```
 
@@ -111,7 +111,7 @@ response, registrant = client.registrants(training).create({
 if response.ok?
   # Do something with registrant
 else
-  p response.json
+  p response.data
 end
 ```
 
@@ -125,7 +125,7 @@ response, registrants = client.registrants(training).all
 if response.ok?
   # Do something with registrants
 else
-  p response.json
+  p response.data
 end
 ```
 

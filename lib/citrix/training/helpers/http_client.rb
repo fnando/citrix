@@ -3,7 +3,7 @@ module Citrix
     module Helpers
       module HttpClient
         def json_parser
-          http_client.configuration.json_parser
+          Aitch::ResponseParser::JSONParser.engine
         end
 
         def url_for(*args)
