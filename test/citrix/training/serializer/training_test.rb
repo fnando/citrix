@@ -39,7 +39,7 @@ module TrainingTest
   class DeserializerTest < Minitest::Test
     let(:serializer) { Citrix::Training::Serializer::Training }
     let(:attrs) {
-      JSON.load(fixtures.join("training.json").read)
+      JSON.parse(fixtures.join("training.json").read)
     }
 
     test "returns name" do

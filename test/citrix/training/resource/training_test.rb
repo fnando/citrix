@@ -3,7 +3,7 @@ require "test_helper"
 module TrainingTest
   class ResourceTest < Minitest::Test
     let(:attributes) {
-      JSON.load(fixtures.join("training.json").read)
+      JSON.parse(fixtures.join("training.json").read)
     }
 
     test "loads all attributes" do

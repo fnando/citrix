@@ -23,7 +23,7 @@ module RegistrantsTest
     end
 
     test "updates registrant with additional attributes" do
-      attrs = JSON.load(fixtures.join("register.json").read)
+      attrs = JSON.parse(fixtures.join("register.json").read)
 
       stub_request(:post, /.+/).to_return(
         body: JSON.dump(attrs),

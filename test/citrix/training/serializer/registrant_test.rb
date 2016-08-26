@@ -19,7 +19,7 @@ module RegistrantTest
 
   class DeserializerTest < Minitest::Test
     let(:serializer) { Citrix::Training::Serializer::Registrant }
-    let(:raw_attrs) { JSON.load(fixtures.join("registrant.json").read) }
+    let(:raw_attrs) { JSON.parse(fixtures.join("registrant.json").read) }
     let(:attrs) { deserialize(raw_attrs) }
 
     test "returns first name" do
